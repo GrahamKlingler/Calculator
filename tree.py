@@ -1,7 +1,6 @@
 from stack import Stack
 
 operators = {'+', '-', '*', '/', '(', ')', '^'}
-priority = {'+': 1, '-': 1, '*': 2, '/': 2, '^': 3}
 
 class BinaryTree:
 
@@ -11,7 +10,7 @@ class BinaryTree:
         self.left = None
 
     def insertLeft(self, new_node):
-        if type(new_node) != BinaryTree:
+        if isinstance(new_node, BinaryTree):
             if self.left is None:
                 self.left = BinaryTree(new_node)
             else:
@@ -27,7 +26,7 @@ class BinaryTree:
                 self.left = t
 
     def insertRight(self, new_node):
-        if type(new_node) != BinaryTree:
+        if isinstance(new_node, BinaryTree):
             if self.right is None:
                 self.right = BinaryTree(new_node)
             else:
