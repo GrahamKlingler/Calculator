@@ -102,8 +102,8 @@ class ExpTree(BinaryTree):
         if c not in operators:
             return c
 
-        right = ExpTree.alt_make_tree(postfix)
-        left = ExpTree.alt_make_tree(postfix)
+        right = ExpTree.make_tree(postfix)
+        left = ExpTree.make_tree(postfix)
 
         c = ExpTree(c)
         c.insertLeft(left)

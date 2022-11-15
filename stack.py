@@ -10,7 +10,7 @@ class Stack:
         new_l = self.items[::-1]
         return Stack(new_l)
 
-    def to_str(self):
+    def __str__(self):
         # returns the stack in a string for error checking
         return ''.join([item for item in self.items])
 

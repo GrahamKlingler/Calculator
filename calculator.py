@@ -4,6 +4,7 @@ from stack import Stack
 operators = {'+', '-', '*', '/', '(', ')', '^'}
 priority = {'+': 1, '-': 1, '*': 2, '/': 2, '^': 3}
 
+
 def infix_to_postfix(exp):
     s = Stack()
     output = Stack()  # ''
@@ -35,6 +36,7 @@ def infix_to_postfix(exp):
 
     return output
 
+
 def calculate(exp):
     exp = infix_to_postfix(exp)
     root = ExpTree.make_tree(exp)
@@ -45,7 +47,8 @@ if __name__ == '__main__':
     print('Welcome to Calculator Program!')
     while True:
         ans = input("Please enter your expression here. To quit enter 'quit' or 'q':\n").replace(' ', '')
-        # ans = '(A+B)*C-D'# '2^2+10*(1+1)' <- for checking errors
+        # ans = '(A+B)*C-D'#  <- for checking errors
+        # ans = '9+2/6'
         if ans == 'quit' or ans == 'q':
             break
         print(calculate(ans))
