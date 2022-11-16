@@ -1,6 +1,7 @@
 from stack import Stack
 
 operators = {'+', '-', '*', '/', '(', ')', '^'}
+priority = {'+': 1, '-': 1, '*': 2, '/': 2, '^': 3}
 
 
 class BinaryTree:
@@ -66,9 +67,9 @@ class BinaryTree:
 
 class ExpTree(BinaryTree):
 
-    # Takes a postfix stack and converts it into an expression tree
     @staticmethod
     def alt_make_tree(postfix):
+        """Takes a reversed postfix stack and converts it into an expression tree"""
         # create stack for tree nodes
         nodes = Stack()
         # reverse the postfix stack to get first characters of expression first
@@ -94,6 +95,7 @@ class ExpTree(BinaryTree):
 
     @staticmethod
     def make_tree(postfix):
+        """Takes a postfix stack and converts it into an expression tree"""
         if postfix.isEmpty():
             return
 
@@ -193,8 +195,12 @@ class ExpTree(BinaryTree):
         # recursive calls
         left_sum = ExpTree.inorder(root.left)
         right_sum = ExpTree.inorder(root.right)
+        if isinstance(root.left, ExpTree) and root.left.getRootVal() in operators and priority[root.left.getRootVal()] < priority[root.getRootVal()]:
+            left_sum = f'({left_sum})'
+        if isinstance(root.right, ExpTree) and root.right.getRootVal() in operators and priority[root.right.getRootVal()] < priority[root.getRootVal()]:
+            right_sum = f'({right_sum})'
 
-        return f'({left_sum}{root.getRootVal()}{right_sum})'
+        return f'{left_sum}{root.getRootVal()}{right_sum}'
 
 
 
